@@ -1,0 +1,75 @@
+<h1>Dashboard</h1>
+<h3>Let's begin, {{name}}.</h3>
+<h6>Are you ready?</h6>
+{{!-- <div id="countdown"></div> --}}
+<h1 id="countdown">Countdown Clock</h1>
+<div id="clockdiv">
+    <div>
+        <span class="hours" id="hour"></span>
+        <div class="smalltext">Hours</div>
+    </div>
+    <div>
+        <span class="minutes" id="minute"></span>
+        <div class="smalltext">Minutes</div>
+    </div>
+    <div>
+        <span class="seconds" id="second"></span>
+        <div class="smalltext">Seconds</div>
+    </div>
+</div>
+
+<p id="demo"></p>
+
+{{#if questions}}
+<form action="/submit" method="POST" id="form">
+    {{#each questions}}
+    <div class="input-field">
+        <label for="{{index}}">
+            <p class="lead">{{description}}</p>
+        </label>
+        <input name="{{index}}" class="validate" type="text" id="{{index}}" placeholder="Enter answer">
+    </div>
+    {{/each}}
+    <button type="submit" class="waves-effect waves-light btn">Submit Your Answers</a>
+</form>
+{{else}}
+<p>No questions!</p>
+{{/if}}
+{{!-- <script type="text/javascript">
+    $("#countdown")
+        .countdown("2020/08/03", function (event) {
+            $(this).text(
+                event.strftime('%D days %H:%M:%S')
+            );
+        });
+</script> --}}
+<script>
+
+    let deadline = new Date("aug 14, 2020 20:00:00 GMT+05:30").getTime();
+
+    let x = setInterval(() => {
+
+        let now = new Date().getTime();
+        let t = deadline - now;
+        // let days = Math.floor(t / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((t % (1000 * 60)) / 1000);
+        document.getElementById("hour").innerHTML = hours;
+        document.getElementById("minute").innerHTML = minutes;
+        document.getElementById("second").innerHTML = seconds;
+        if (t < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "TIME UP";
+            document.getElementById("hour").innerHTML = '0';
+            document.getElementById("minute").innerHTML = '0';
+            document.getElementById("second").innerHTML = '0';
+        }
+    }, 1000);
+
+    let ttl = deadline - new Date().getTime();
+
+    let y = setTimeout(() => {
+        document.getElementById("form").submit();
+    }, ttl);
+</script>

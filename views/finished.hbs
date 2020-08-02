@@ -1,0 +1,9 @@
+<h1>You've finished the quiz!</h1>
+
+
+<script>
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+    };
+</script>
