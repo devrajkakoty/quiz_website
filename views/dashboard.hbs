@@ -1,36 +1,37 @@
-<h1>Dashboard</h1>
-<h3>Let's begin, {{name}}.</h3>
-<h6>Are you ready?</h6>
-{{!-- <div id="countdown"></div> --}}
-<h1 id="countdown">Countdown Clock</h1>
-<div id="clockdiv">
-    <div>
-        <span class="hours" id="hour"></span>
-        <div class="smalltext">Hours</div>
+<div class="center-align">
+    <h2>Welcome, {{name}}!</h2>
+    <h3>Let's begin</h3>
+    <h1 id="countdown">Time left:</h1>
+    <div id="clockdiv">
+        <div>
+            <span class="hours" id="hour"></span>
+            <div class="smalltext">Hours</div>
+        </div>
+        <div>
+            <span class="minutes" id="minute"></span>
+            <div class="smalltext">Minutes</div>
+        </div>
+        <div>
+            <span class="seconds" id="second"></span>
+            <div class="smalltext">Seconds</div>
+        </div>
     </div>
-    <div>
-        <span class="minutes" id="minute"></span>
-        <div class="smalltext">Minutes</div>
-    </div>
-    <div>
-        <span class="seconds" id="second"></span>
-        <div class="smalltext">Seconds</div>
-    </div>
+
+    <p id="demo"></p>
 </div>
-
-<p id="demo"></p>
-
 {{#if questions}}
 <form action="/submit" method="POST" id="form">
     {{#each questions}}
     <div class="input-field">
-        <label for="{{index}}">
-            <p class="lead">{{description}}</p>
+        <label for="{{index}}" class="ques-label">
+            <p class="lead desc">{{index}}. {{description}}</p>
         </label>
-        <input name="{{index}}" class="validate" type="text" id="{{index}}" placeholder="Enter answer">
+        <input name="{{index}}" class="validate ques-input" type="text" id="{{index}}" placeholder="Enter answer">
     </div>
     {{/each}}
-    <button type="submit" class="waves-effect waves-light btn">Submit Your Answers</a>
+    <div class="center-align">
+        <button type="submit" class="waves-effect waves-light btn light-blue darken-3">Submit Your Answers</button>
+    </div>
 </form>
 {{else}}
 <p>No questions!</p>
